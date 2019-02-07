@@ -1,0 +1,1848 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 
+%%% Support for torture. Experimental evidence from the Mexican war on drugs
+%%% Javier Osorio
+%%%  
+%%% Compiled in www.sharelatex.com
+%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\documentclass[12pt,letterpaper]{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\renewcommand{\baselinestretch}{1.5} 
+
+\usepackage[english]{babel}
+\usepackage{setspace}        % To shrink space between lines %
+\usepackage{lscape}          % Horizontal page %
+\usepackage{chngcntr}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{longtable}
+\usepackage{float}          % For tables and graphs  %
+%\doublespacing
+%\usepackage[capposition=top]{floatrow}  %For adding a note below a figure%
+\usepackage{booktabs,caption,fixltx2e}  %For adding a note below a figure%
+\usepackage[flushleft]{threeparttable}   %For adding a note below a figure%
+
+
+\renewcommand{\arraystretch}{1.5}
+\usepackage{rotating}                   %For rotating text%
+%\usepackage{color}                      % For text in different colors%
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+ 
+\widowpenalty=1000               %Reduce widows and orphans (higher numbers)%
+\clubpenalty=1000
+
+
+%\bibpunct[; ]{(}{)}{,}{a}{}{;}
+%\setlength{\bibsep}{1.9 pt} %To reduce space between lines in the bilbiography%
+
+
+\newcommand{\high}{\mathit{high}}
+\newcommand{\low}{\mathit{low}}
+
+\usepackage{bigdelim}
+
+\renewcommand{\thetable}{\Roman{table}}     % Roman numbers for Tables
+\renewcommand{\thefigure}{\arabic{figure}}    % Arabic numbers for Figures
+
+\usepackage{tcolorbox}    % Create a colored box
+\usepackage{shortvrb}     % For a short verbatim in line
+\usepackage{xcolor}       % Colored text
+\usepackage{hyperref}     % Enable URLs
+\usepackage{multirow}     % Multi-row
+\usepackage{todonotes}    % Generate visible annotations
+\usepackage{colortbl}     % Colored cells in table
+\usepackage{mathtools}    % Mathematical notation
+\usepackage{natbib}       % Bibliography %
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\LaTeX~Crash Course}
+\author{Javier Osorio \\ School of Government and Public Policy \\ University of Arizona }
+\date{Spring, 2019} 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+
+\newpage
+\tableofcontents{}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Getting started with \LaTeX}
+
+\LaTeX~ is a document preparation system for high-quality typesetting. It is the standard system for developing and publishing scientific or technical documents across disciplines. This typesetting system, pronounced as ``Lah-tech'' or ``Lay-tech,''  allows users to concentrate in the content of their documents without worrying too much about the format or appearance of their documents. The flexibility and stability of \LaTeX~ makes it easy to write journal articles, technical reports, books, and presentations. It allows users to clearly write complex mathematical formulas, structure long documents in sections, embed tables and figures, and manage citations and bibliographies in different styles.
+
+To develop and compile \LaTeX~ documents in your computer, you need to download \LaTeX~ online for free at \url{https://www.latex-project.org/get/}. \LaTeX~ is not a stand-alone document development software in itself, but a system that bundles different utilities and packages that enable writing and compiling high-quality scientific documents. \LaTeX~ is available from different distributions that already include the most common packages to develop documents. These distributions are available for different operating systems:
+
+\begin{itemize}
+\item Windows: ProTeXt \url{http://www.tug.org/protext/} 
+\item Mac OS X: MacTeX \url{http://www.tug.org/mactex/}
+\item Linux: LeXLive \url{https://www.tug.org/texlive/}
+\end{itemize}
+
+\LaTeX~ distributions usually come in large installation files that might take considerable space in your computer. Successful local compilation also generates multiple files in your computer. In addition, you might need to download additional packages for advance users. Also, distributions of local \LaTeX~ operate in a console that often requires running several times to effectively compile a document. These issues are not a big hurdle to run \LaTeX~ in a local environment but, in my experience, developing and compiling \LaTeX~ online is much easier.
+
+To use \LaTeX~ online, I recommend using Overleaf, which is available at \url{https://www.overleaf.com/}. There are other online \LaTeX~ compilers such as Papieera or Datazar that also work very well.  Feel free to use the one that you like the most. In this workshop, we will be using Overleaf.
+
+To get started in Overleaf, the first step is to log-in to your account. To create a new document,  click on the green button ``New Project,'' located at the top left of the interface. Then, click on ``Blank Project'' and assign a name to your file.
+
+
+    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Basic Elements}
+
+This section discusses the main structure of \LaTeX~ documents; the configuration of the preamble; the cover page including the title, author, and date; sections and subsections; different types of fonts, sizes, and text colors; itemized and enumerated lists; footnotes; hyperlinks; and comments.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Document Structure}
+
+The first step to start a \LaTeX document is to create a structure.  You simply write the following elements: 
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\documentclass{article}
+\begin{document}
+This is where you write your wonderful ideas in \LaTeX!!!
+\end{document}
+\end{verbatim}
+\end{tcolorbox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Preamble}
+
+The Preamble is the section where you define the document environment and its characteristics. Here is also where you call a variety of packages to execute specific functions using the command \texttt{\textbackslash usepackage\{\}}.   
+
+The first step is to define the main type of document that you want to create. There are different types of document classes. The most common are: 
+\begin{itemize}\itemsep-0.4em
+\item  \texttt{article}: for academic articles. 
+\item  \texttt{beamer}:	for presentation. 
+\item  \texttt{book}:	for books. 
+\item  \texttt{report}: for long documents, probably your dissertation. 
+\item  \texttt{letter}:	for writing letters.
+\end{itemize}
+
+Define the size of the page and the font in the document class. Let's use a letter size page by setting the \texttt{letterpaper} option and choosing a font 12 for the document.  There are other font sizes to choose from (\texttt{9pt, 11pt, 12pt}). It is also necessary to use the \texttt{inputenc} to define the encoding of the document as UTF-8. Also, the \texttt{geometry} package allows to specify the page margins of the document.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\end{verbatim}
+\end{tcolorbox}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Title, author, and date}
+
+As part of the preamble, Write the title of your paper and enter your name. To specify the date, you can enter a fixed date (e.g. February, 2019) or you can use the \texttt{\textbackslash date\{\textbackslash today\}} option to get the current date every time you recompile the file.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\title{Really Cool Title}
+\author{Your name}
+\date{February, 2019}
+\end{verbatim}
+\end{tcolorbox}
+
+To have the title, author, and date displayed in the paper, it is necessary to enter the command \texttt{\textbackslash maketitle} below the \texttt{\textbackslash begin\{\textbackslash document\}} element. At this point, the script of your \LaTeX document should be looking like this:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\title{Really Cool Title}
+\author{Your name}
+\date{February, 2019}
+\begin{document}
+\maketitle
+This is where you write your wonderful ideas in \LaTeX!!!
+\end{document}
+\end{verbatim}
+\end{tcolorbox}
+
+You might want to thank all your fans and sponsors. To do so, the \texttt{\textbackslash thanks\{\}} option generates a footnote where you can add a thank you note or any other information.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\author{Your name\thanks{Thanks for being awesome!}}
+\end{verbatim}
+\end{tcolorbox}
+
+To include your coauthors and indicate their institutions, you will need to include the \texttt{authblk} package in the preamble and indicate the authors and institutions:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{authblk}
+\title{Really Cool Title}
+\author[1]{This is you \thanks{Thank your dog}}
+\author[2]{This is your friend \thanks{Thank your cat}}
+\affil[1]{Department A}
+\affil[2]{Department D}
+\date{February, 2019}
+\begin{document}
+\maketitle
+This is where you write your wonderful ideas in \LaTeX!!!
+\end{document}
+\end{verbatim}
+\end{tcolorbox}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sections and subsections}
+
+\LaTeX~allows dividing the document into separate segments according to a hierarchical structure of sections, subsections, and subsubsections. \LaTeX~will automatically take care of the size of the font and the numbering section so you just focus on developing the content. If you are writing a presentation, a book, or a report, you might want to create a Table of Contents by including the \texttt{\textbackslash tableofcontents\{\}} element after the document title. However, that might not a good idea for a journal article.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{document}
+\maketitle
+\tableofcontents{}
+\section{Main section}
+This is where you write your wonderful ideas in \LaTeX!!!
+\subsection{Secondary section}
+Keep the ideas flowing.
+\subsubsection{You got the idea}
+OK, that is good.
+\section{To hide the section number}
+Simply include an asterisk before the opening bracket
+\end{document}
+\end{verbatim}
+\end{tcolorbox}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Font type, size, and color}
+
+One of the nice things about \LaTeX is the possibility of using different types of fonts in a seamless manner. Here is a list of the different font types:
+
+\vspace{0.3cm}
+
+\begin{singlespace}
+\begin{tabular}{ll}
+ \texttt{\textbackslash textbf\{\}} & \textbf{Text sample in Bold font}\\
+ \texttt{\textbackslash texttt\{\}} & \texttt{Text sample in Typewriter}\\
+ \texttt{\textbackslash textit\{\}} & \textit{Text sample in Italics}\\
+ \texttt{\textbackslash emph\{\}} & \emph{Another sample of Italics using emphasis}\\
+ \texttt{\textbackslash textrm\{\}} & \textrm{Text sample in Roman family}\\
+ \texttt{\textbackslash textsf\{\}} & \textsf{Text sample in Sans serif family}\\
+ \texttt{\textbackslash textsl\{\}} & \textsl{Text sample in Slanted}\\
+ \texttt{\textbackslash textsc\{\}} & \textsc{Text sample in Small Capitals}\\
+ \texttt{\textbackslash uppercase\{\}} & \uppercase{Text sample in Uppercase}\\
+ & \\
+\end{tabular}
+\end{singlespace}
+
+In this way, \texttt{you can use a variety of font} \textit{families and styles} \textsf{to put different emphasis} on the content of \textbf{your document}. You can even \textsc{Combine Different Fonts \textbf{By Nesting The Styles.}}
+
+Sometimes you might find useful to use different font sizes. There are two ways to specify the font size in the text:
+
+\begin{enumerate}   
+\item Using the \texttt{\textbackslash size} command will assign that font size to all the text followed after the command
+\item Using the \texttt{\textbackslash begin\{size\} Your text here \textbackslash end\{size\}} command only assigns the specified font size to the text between the begin and end functions.
+\end{enumerate}
+
+\LaTeX allows you to do that by entering the following specifications for your text. 
+
+\vspace{0.5cm}
+
+\begin{tabular}{ll}
+ \texttt{\textbackslash Huge} & \begin{Huge}Text sample in Huge font\end{Huge}\\
+ \texttt{\textbackslash huge} & \begin{huge}Text sample in huge font\end{huge}\\
+ \texttt{\textbackslash LARGE}& \begin{LARGE}Text sample LARGE font\end{LARGE}\\
+ \texttt{\textbackslash Large}& \begin{Large}Text sample Large font\end{Large}\\
+ \texttt{\textbackslash large} &\begin{large}Text sample in large font\end{large}\\
+ \texttt{\textbackslash normalsize} & \begin{normalsize}Text sample in normalsize font\end{normalsize}\\
+ \texttt{\textbackslash small}& \begin{small}Text sample in small font\end{small}\\
+ \texttt{\textbackslash footnotesize}& \begin{footnotesize}Text sample in footnotesize font\end{footnotesize}\\
+ \texttt{\textbackslash scriptsize}& \begin{scriptsize}Text sample in scriptsize font\end{scriptsize}\\
+ \texttt{\textbackslash tiny}& \begin{tiny}Text sample in tiny font\end{tiny}\\
+\end{tabular}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Text Color}
+
+To change the font color, users need to include first the \texttt{xcolor} package in the document preamble. This is a very flexible package that allows different modes of editing the color of the text.
+
+The basic usage allows \textcolor{red}{changing the color of the font}. The script below shows the syntax.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+The basic usage allows \textcolor{red}{changing the color of the font}.
+\end{verbatim}
+\end{tcolorbox}
+
+Another use is to highlight the text using a \colorbox{green}{color box}. 
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+The basic usage allows \textcolor{red}{changing the color of the font}.
+\end{verbatim}
+\end{tcolorbox}
+
+Of course, users can combine these scripts \colorbox{black}{\textcolor{yellow}{to create the following phrase}}.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\colorbox{black}{\textcolor{yellow}{to create the following phrase}}.
+\end{verbatim}
+\end{tcolorbox}
+
+Users can assign gradual transparency in the \textcolor{blue!30}{color of} \textcolor{blue!80}{the text} or in the \colorbox{red!30}{color} \colorbox{red!80}{boxes}.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+transparency in the \textcolor{blue!30}{color of} \textcolor{blue!80}{the text} 
+or in the \colorbox{red!30}{color} \colorbox{red!80}{boxes}
+\end{verbatim}
+\end{tcolorbox}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Lists}
+
+\LaTeX allows users to generate different types of lists in your document.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Itemize}
+
+The following code generates an itemized list of three elements.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{itemize}
+\item This is your first item
+\item This is your second  item
+\item This is your third item
+\end{itemize}
+\end{verbatim}
+\end{tcolorbox}
+
+Which generates the following itemized list:
+\begin{itemize}
+\item This is your first item
+\item This is your second  item
+\item This is your third item
+\end{itemize}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Enumerate}
+
+The following code generates an numeric list of three elements.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{enumerate}
+\item This is your first item
+\item This is your second item
+\item This is your third item
+\end{enumerate}
+\end{verbatim}
+\end{tcolorbox}
+
+\vspace{1.1cm}
+
+Which generates the following numeric list:
+\begin{enumerate}
+\item This is your first item
+\item This is your second  item
+\item This is your third item
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Nesting lists}
+
+Users can also nest lists in hierarchical structures. 
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{enumerate}
+\item This is the first level
+    \begin{enumerate}
+    \item This is the second level
+        \begin{enumerate}
+        \item This is the third level
+            \begin{enumerate}
+            \item This is the fourth level
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+\end{verbatim}
+\end{tcolorbox}
+
+Which generates the following structural numeric list:
+\begin{enumerate}
+\item This is the first level
+\begin{enumerate}
+\item This is the second level
+\begin{enumerate}
+\item This is the third level
+\begin{enumerate}
+\item This is the fourth level
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+
+\LaTeX~ allows a maximum of four levels of nesting in itemized and numeric lists. Beyond such level, the system generates a compiling error indicating that the item is ``Too deeply nested.'' In such cases, \LaTeX~ will compile the document, but will show the deeply nested items at the fourth level.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Combining lists}
+
+\LaTeX~ also allows to combine numeric and itemized lists as the following script shows:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{enumerate}
+\item This is your first item
+\item This is your second item
+    \begin{itemize}
+    \item This is the first item in the second level
+    \item This is the second item in the second level
+    \end{itemize}
+\item  This is your third item
+    \begin{itemize}
+    \item This is the first item in the second level
+        \begin{itemize}
+        \item This is the first item in the third level
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+\end{verbatim}
+\end{tcolorbox}
+
+
+\begin{enumerate}
+\item This is your first item
+\item This is your second item
+    \begin{itemize}
+    \item This is the first item in the second level
+    \item This is the second item in the second level
+    \end{itemize}
+\item  This is your third item
+    \begin{itemize}
+    \item This is the first item in the second level
+        \begin{itemize}
+        \item This is the first item in the third level
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Customizing bullets in itemized lists}
+
+Users can also customize the bullet markers in itemized lists. Here are some ways of customizing item markers:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\item This is the default bullet
+\item[*] This item shows a customized bullet
+\item[-] This item shows another customized bullet
+\item[] This item has no bullet
+\end{verbatim}
+\end{tcolorbox}
+
+Which generates the following list:
+
+\begin{itemize}
+\item This is the default bullet
+\item[*] This item shows a customized bullet
+\item[-] This item shows another customized bullet
+\item[] This item has no bullet
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Footnotes}
+
+To write a footnote, all you have to do is to use the \texttt{\textbackslash footnote\{Text\}} command. That will give you a footnote.\footnote{Just like this footnote.} The nice thing about \LaTeX~ is that you do not have to worry about how many footnotes you enter,\footnote{Like this other footnote.} the system will automatically take care of the footnote numbering.\footnote{Isn't that nice?} 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hyperlinks}
+
+To generate an active Uniform Resource Locator (URL) or hyperlink in the document, users need to include the \texttt{hyperref} package in the document preamble. 
+
+Once loaded, the  \texttt{\textbackslash url\{www\}} command allows users to generate a working URL that explicitly shows the web address in the following way: \url{https://sgpp.arizona.edu/}.
+
+As an alternative, users may want to hide an active link behind the text. To do so, they need to use the \texttt{\textbackslash href\{www\}\{description\}} command, where \texttt{www} is the URL and \texttt{desc} is the description of the text. 
+
+For example, this code  \texttt{\textbackslash href\{https://sgpp.arizona.edu/\}\{SGPP Home Page\}}, generates this link: \href{https://sgpp.arizona.edu/}{SGPP Home Page}.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Comments}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Invisible comments}
+
+To write a comment in the \LaTeX~ script that is not visible in the PDF, simple use the \texttt{\%} sign. For example, the following annotation:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Important reminder:
+Writing in \LaTeX~is lots of fun! Shall you ever get stuck,
+% do not despair and
+just Google it!!
+% There are lots of resources out there to help you.
+\end{verbatim}
+\end{tcolorbox}
+
+Generates this output:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Important reminder:
+Writing in \LaTeX~is lots of fun! Shall you ever get stuck,
+% do not despair and
+just Google it!!
+% There are lots other users out there to help you.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Visible comments}
+
+To generate notes that are visible in the PDF document, users need to include the \texttt{todonotes} package in the preamble of the script. Once loaded, there are different ways of using \texttt{todonotes}. 
+
+You can use the command \texttt{\textbackslash todo\{Your comment\}} to create a bubble annotation at the margin of the document.\todo{Do this}
+
+This package also allows entering a comment in the body of the document by using the command  \texttt{\textbackslash todo[inline]\{Your comment\}}, which generates the following comment: \todo[inline]{Your comment}.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tables}
+
+Tables and Figures are \textit{floating} elements that can be positioned and formatted in \LaTeX documents according to the user's needs. For this reason, these elements are referred as \texttt{floats} in the \LaTeX~jargon.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Basic Tables}
+
+\LaTeX~ has considerable flexibility to allow users to write high-quality tables. In contrast to most text processors that often mess with the format of complex tables, \LaTeX~ maintains a high-degree of stability when producing tables.
+
+To produce your first table, simply create a \texttt{tabular} environment:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{tabular}{lcr} 
+Header A & Header B & Header C \\
+cell A1  &  cell B1  &  cell C1 \\
+cell A2  &  cell B2  &  cell C2 \\
+cell A3  &  cell B3  &  cell C3 \\
+\end{tabular}
+\end{verbatim}
+\end{tcolorbox}
+
+Which, produces a basic table:
+
+\begin{tabular}{lcr} 
+Header A & Header B & Header C \\
+cell A1  &  cell B1  &  cell C1 \\
+cell A2  &  cell B2  &  cell C2 \\
+cell A3  &  cell B3  &  cell C3 \\
+\end{tabular}
+
+\vspace{0.5cm}
+
+The number of elements after the \texttt{\textbackslash begin\{tabular\}} command indicates the number of columns considered in the Table. In this case, the \texttt{\{lcr\}} description corresponds to three columns. The \texttt{l}, \texttt{c}, and \texttt{r} specifications indicate that the fist column is aligned to the left, the second is centered, and the third column is aligned to the right. The \texttt{tabular} environment uses the ampersand sign  \texttt{\&} to mark column separations and the  \texttt{\textbackslash\textbackslash} sign to separate rows.
+
+It is easy to improve the looks of this basic table by including additional elements. For example, adding bars to the \texttt{\{|l|c|r|\}} description, will create vertical lines at the extreme of the table and between columns. The command \texttt{\textbackslash hline} draws a horizontal line to separate rows. We can also black font for the column headers.  Bringing these elements to the script:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \textbf{Header B} & \textbf{Header C} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\
+cell A2  &  cell B2  &  cell C2 \\
+cell A3  &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+\end{verbatim}
+\end{tcolorbox}
+
+This produces a better looking table:
+
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \textbf{Header B} & \textbf{Header C} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\
+cell A2  &  cell B2  &  cell C2 \\
+cell A3  &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Milti-column}
+
+To merge cells across columns, you must use the \texttt{\textbackslash multicolumn\{\}\{\}\{\}} command. Notice the three sets of brackets \texttt{\{\}}. The first set of brackets indicates the number of columns to be merged. The second set of brackets indicates the alignment (\texttt{l, c, r}) of the cell. Finally, the user writes the content of the cell the third set of brackets.  For example, the command \texttt{\textbackslash multicolumn\{2\}\{|c|\}\{Header B\}} will merge two columns, assign a centered alignment with line separators, and enter the text ``\texttt{Header B}.''
+
+When merging cells across columns, it is important to keep in mind the position of the \texttt{\textbackslash multicolumn\{\}\{\}\{\}} and the overall number of columns so it does not alter the general structure of the table as specified in the \texttt{tabular} environment.
+
+For example, consider the following script:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \multicolumn{2}{|c|}{\textbf{Header B}} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\
+cell A2  &  cell B2  &  cell C2 \\
+cell A3  &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+\end{verbatim}
+\end{tcolorbox}
+
+This generates a table with cells combined across columns:
+
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \multicolumn{2}{|c|}{\textbf{Header B}} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\
+cell A2  &  cell B2  &  cell C2 \\
+cell A3  &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Multi-row}
+
+To merge cells across rows, users must first specify the \texttt{\textbackslash usepackage\{multirow\}}. To use this package, users must enter the following command \texttt{\textbackslash multirow\{\}\{\}\{\}}. The first set of brackets must indicate the number of rows to be merged. The second set of brackets specifies the width of the merged cell. You can use the \texttt{\{*\}} to keep the natural width of the cell. Users must specify the content of the cell in the third set of brackets. For example, the command \texttt{\textbackslash multirow\{2\}\{*\}\{rows A2 and A3\}} merges a cell across two rows, keeping the natural widht of the column, and including the text ``\texttt{rows A2 and A3}.''
+
+
+For example, considering the following script:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \textbf{Header B} & \textbf{Header C} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\ \hline
+\multirow{2}{*}{cells A2 and A3}  &  cell B2  &  cell C2 \\ \cline{2-3}
+       &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+\end{verbatim}
+\end{tcolorbox}
+
+When using the \texttt{multirow} package, keep in mind that the total number of rows must match the overall number of rows in the table. For example,  notice that the first cell of the last row is empty in the script above because of the \texttt{multirow} specification in the line above. Also, to improve the looks of the Table, the script includes the \texttt{\textbackslash cline{}} command, that draws a partial horizontal line to separate rows between columns 2 and 3, but not across the entire table as \texttt{\textbackslash hline} would do. 
+
+
+Which produces this table:
+
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \textbf{Header B} & \textbf{Header C} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\ \hline
+\multirow{2}{*}{cells A2 and A3}  &  cell B2  &  cell C2 \\ \cline{2-3}
+       &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+
+%\vspace{0.5cm}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Combining multi-column and multi-row}
+
+
+Of course, \LaTeX~ allows combining the multi-column and multi-cell Commands to generate more sophisticated tables. For example, consider the following script.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \multicolumn{2}{|c|}{\textbf{Header B}} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\ \hline
+\multirow{2}{*}{cells A2 and A3}  &  cell B2  &  cell C2 \\ \cline{2-3}
+       &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+\end{verbatim}
+\end{tcolorbox}
+
+Which produces the following table:
+
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \multicolumn{2}{|c|}{\textbf{Header B}} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\ \hline
+\multirow{2}{*}{cells A2 and A3}  &  cell B2  &  cell C2 \\ \cline{2-3}
+       &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cell Color}
+
+To change the color of cells in a table, users must call the  \texttt{colortbl} package in the document preamble. Then, users have to enter the following command \texttt{cellcolor{color}} within the \texttt{\&} delimiters of the cell to be colored. In the following script, the specification \texttt{\textbackslash cellcolor\{lightgray\}} in the three cells of the top row fills in gray the header of the table. The \texttt{colortbl} package also allows indicating the percentage of intensity of a color. To do so, the use has to include an excalmation sign \texttt{!} followed by a number ranging from [0-100] to indicate the percentage of color intensity. For example, the specification of \texttt{\textbackslash cellcolor\{blue!25\}} in A1 fills the cell in blue at 25\% of intensity, \texttt{\textbackslash cellcolor\{blue!50\}} in A2 fills the cell in blue at 50\%, and \texttt{\textbackslash cellcolor\{blue!75\}} in A3 fills the cell in blue at 75\%.
+
+The following scrip:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{tabular}{|l|c|r|} 
+\hline
+\cellcolor{lightgray}\textbf{Header A} &
+\cellcolor{lightgray}\textbf{Header B} &
+\cellcolor{lightgray}\textbf{Header C} \\ 
+\hline\hline
+\cellcolor{blue!25}cell A1  &  cell B1  &  cell C1 \\
+\cellcolor{blue!50}cell A2  &  cell B2  &  cell C2 \\
+\cellcolor{blue!75}cell A3  &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+\end{verbatim}
+\end{tcolorbox}
+
+Will produce this colored table:
+
+\begin{tabular}{|l|c|r|} 
+\hline
+\cellcolor{lightgray}\textbf{Header A} & \cellcolor{lightgray}\textbf{Header B} & \cellcolor{lightgray}\textbf{Header C} \\ 
+\hline\hline
+\cellcolor{blue!25}cell A1  &  cell B1  &  cell C1 \\
+\cellcolor{blue!50}cell A2  &  cell B2  &  cell C2 \\
+\cellcolor{blue!75}cell A3  &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+
+\vspace{0.5cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Table Position, Title, and Numeric Reference}
+
+\LaTeX~ allows additional table specifications such as placing the table in a specific position in the document, indicating the table title, as well as automatically tracking the number of tables and making references to tables. To manipulate these features, users need to create a \texttt{table} environment.  For example, consider the following code:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{table}[h!]
+  \begin{center}
+    \caption{My first table.}
+    \label{tab:table1}
+    \begin{tabular}{|l|c|r|} 
+    \hline
+    \textbf{Header A} & \multicolumn{2}{|c|}{\textbf{Header B}} \\ 
+    \hline\hline
+    cell A1  &  cell B1  &  cell C1 \\
+    cell A2  &  cell B2  &  cell C2 \\
+    cell A3  &  cell B3  &  cell C3 \\ \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+\end{verbatim}
+\end{tcolorbox}
+
+Start by opening a \texttt{\{table\}} environment. The \texttt{\{h!\}} specification after \texttt{\{table\}} places the table ``\textit{here}'', or approximately to where the table is indicated in the script. Also, the exclamation sign \texttt{\{!\}} overrides other \LaTeX parameters that might interfere with positioning the table in the designated place. There are different position specifications in \LaTeX:
+
+\begin{itemize}\itemsep-0.4em
+\item \texttt{\{H\}}: place the float \textit{exactly} at the location in the script
+\item \texttt{\{h\}}: place the float approximately ``\textit{here}.''
+\item \texttt{\{t\}}: place the float on top of the page.
+\item \texttt{\{b\}}: place the float at the bottom of the page.
+\item \texttt{\{p\}}: pace the float on a special page for floats.
+\item \texttt{\{!\}}: overrides internal parameters to identify the ``best'' place of the Table
+\end{itemize}
+
+In order to make the table look nicer, the user can create a \texttt{\{center\}} environment within the \texttt{\{table\}} environment to center the entire Table. 
+
+To add a Title to the Table, the user has to assign a name within the \texttt{\textbackslash caption\{Title\}} command. Placing the \texttt{\textbackslash caption\{\}} above the \texttt{\{tabular\}} environment, as indicated in this example, will place the Title above the table. In contrast, when the \texttt{\textbackslash caption\{\}} is placed below the \texttt{\{tabular\}}, the Table Title appears at the bottom of the Table. In this particular example, the Table Title is \texttt{\textbackslash caption\{My First Table\}}.
+
+To reference a Table (or any other kind of object such as chapters, sections, figures, equations, etc.) across the document, users need to specify first the name of the label using the following command: \texttt{\textbackslash label\{name\}}, included within the \texttt{table} environment. \LaTeX~ will automatically generate a counter for each type of object (e.g. Tables or Figures). After specifying the label, the user has to indicate in the body of the document the reference to that specific Table using the command \texttt{\textbackslash ref\{name\}}. In this particular example, the label and reference name of this float is \texttt{\{tab:table1\}}.
+
+The script with the elements mentioned above generates Table \ref{tab:table1}.
+
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{My First Table.}
+    \label{tab:table1}
+    
+    \begin{tabular}{|l|c|r|} 
+    \hline
+    \textbf{Header A} & \multicolumn{2}{|c|}{\textbf{Header B}} \\ 
+    \hline\hline
+    cell A1  &  cell B1  &  cell C1 \\
+    cell A2  &  cell B2  &  cell C2 \\
+    cell A3  &  cell B3  &  cell C3 \\ \hline
+    \end{tabular}
+
+  \end{center}
+\end{table}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Figures}
+
+
+\LaTeX~ considers Figures as floating objects, just like it does with Tables. Therefore, the functions discussed before for positioning Tables, assigning a Title, and making cross-references in the document also apply to Figures. 
+
+The \texttt{float} package improves the basic \LaTeX~ functions for figures and tables. It is particularly useful to better manage the position of floating objects. So, make sure to include it in your document preamble.
+
+To insert a Figure in the document, the user needs first to create a Figure environment with the following command: \texttt{\textbackslash begin\{figure\}}. To enter the Figure, the user then has to use the command \texttt{\textbackslash includegraphics\{name.ext\}}, where \texttt{.ext} is the extension indicating the type of file. \LaTeX~ can process the most popular image formats such as \texttt{.png}, \texttt{.jpg}, \texttt{.pdf}. When specifying the file name, make sure to type the file name and extension correctly (remember, \LaTeX~ is case sensitive). Otherwise, the system will issue an error message and will not render the image. Overleaf has a nice auto-fill function that prompts the names of image files existing within the project  when entering the \texttt{\textbackslash includegraphics\{\}} command.
+
+
+The following script generates Figure~\ref{fig:figure1} as an output.
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{figure}[H]
+  \centering
+  \includegraphics{image1.png}
+  \caption{My First Figure.}
+  \label{fig:figure1}
+\end{figure}
+\end{verbatim}
+\end{tcolorbox}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{image1.png}
+  \caption{My First Figure.}
+  \label{fig:figure1}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Adjusting the Figure Size}
+
+\LaTeX~ allows adjusting the size of a Figure by increasing or deducing the dimensions of the image in a proportional manner, by indicating a specific width and/or height, or by considering the proportion of the page. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Resizing proportional to the image}
+
+Users can increase or reduce the size of the image proportionally by indicating the \texttt{scale}. For example, the command \texttt{\textbackslash includegraphics[scale=0.5]\{image1.png\}}  will reduce the image at half of its original size as presented in Figure \ref{fig:figure2}. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.5]{image1.png}
+  \caption{Reduced image.}
+  \label{fig:figure2}
+\end{figure}
+
+In contrast, the command \texttt{\textbackslash includegraphics[scale=1.2]\{image1.png\}} will render the  image at 120\% of its original size as shown in Figure \ref{fig:figure3}. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=1.2]{image1.png}
+  \caption{Expanded Figure.}
+  \label{fig:figure3}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Adjusting the width and height}
+
+Another way of modifying the Figure size in \LaTeX~ is by specifying the width and height measures of the image. The following command will render the image with a width of 4 cm and a height of 6 cm \texttt{\textbackslash includegraphics[width=4cm,height=6cm]\{image1.png\}} as shown in Figure \ref{fig:figure4}.
+ 
+ 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=2cm,height=4cm]{image1.png}
+  \caption{Stretched Figure (4 cm x 6 cm).}
+  \label{fig:figure4}
+\end{figure} 
+ 
+Users can also use the imperial metric system to specify the figure dimensions. For example, the command \texttt{\textbackslash includegraphics[width=5in,height=1.5in]\{image1.png\}} generates an image of 5 inches in width and 1.5 inches in height, as indicated in Figure \ref{fig:figure5}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=5in,height=1.5in]{image1.png}
+  \caption{Stretched Figure (5 in x 1.5 in).}
+  \label{fig:figure5}
+\end{figure} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Resizing proportional to the page}
+
+Finally, \LaTeX~ allows managing the size of a Figure with respect to the area available in the page. For example, the command \texttt{\textbackslash includegraphics[width=0.25\textbackslash linewidth]\{image1.png\}} will render an image proportional to 25\% of the width of the page as shown in Figure \ref{fig:figure6}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.25\linewidth]{image1.png}
+  \caption{Figure size at 25\% of the page.}
+  \label{fig:figure6}
+\end{figure} 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Multiple Images}
+
+\LaTeX~ allows including multiple images within the same Figure. To do so, the user has to embed a \texttt{subfigure} environment within the \texttt{figure} environment.  All other parameters of the figure environment apply to the subfigure.  For example, the following code will generate panels \ref{fig:figure7a} and \ref{fig:figure7b} in Figure\ref{fig:figure7}.
+
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{figure}[h]
+\centering 
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[scale=1]{image1.png} 
+        \caption{UofA logo}
+        \label{fig:figure7a}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[scale=1]{image2.jpg}
+        \caption{Cat logo}
+        \label{fig:figure7b}
+    \end{subfigure}
+\caption{Caption for this figure with two images}
+\label{fig:figure7}
+\end{figure}
+\end{verbatim}
+\end{tcolorbox}
+
+
+\begin{figure}[h]
+\centering 
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[scale=1]{image1.png} 
+        \caption{UofA logo}
+        \label{fig:figure7a}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[scale=1]{image2.jpg}
+        \caption{Cat logo}
+        \label{fig:figure7b}
+    \end{subfigure}
+\caption{Figure with two images.}
+\label{fig:figure7}
+\end{figure}
+
+When dealing with figures of different sizes, you can use any of the approaches discussed before to redefine the dimensions of the images within the \texttt{subfigure} environment. For example, Figure \ref{fig:figure8} presents the images of Panel \ref{fig:figure8a} and Panel \ref{fig:figure8b} with the same size using the \texttt{\textbackslash includegraphics[width=4cm,height=4cm]\{\}} specification. 
+
+\begin{figure}[h]
+\centering 
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=4cm,height=4cm]{image1.png} 
+        \caption{UofA logo}
+        \label{fig:figure8a}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=4cm,height=4cm]{image2.jpg}
+        \caption{Cat logo}
+        \label{fig:figure8b}
+    \end{subfigure}
+\caption{Figure with two resized images.}
+\label{fig:figure8}
+\end{figure}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Math Symbols and Equations}
+
+    \begin{itemize} \itemsep-0.4em
+    \item Line formulas
+    \item Floating formulas
+    \item Greek and special characters
+    \end{itemize}  
+
+One of the nicest features of \LaTeX~ is its great capacity for presenting mathematical writing in a clear and flexible manner. This is one of the key features that makes \LaTeX~ be the industry standard for communicating scientific ideas. The \texttt{mathtools} enhances the functionality and flexibility for writing mathematical notation. So, make sure to always include it in the preamble of your document. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{In line mathematical expression}
+
+One way to write a mathematical expression in a line of text is by using the ``\verb|\( \)|'' delimiters. In this math mode, the ``\verb|\(|'' delimiter is used to begin the mathematical expression and the second delimiter ``\verb|\)|'' must be used to close it.  For example, the script:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+I  love the binomial theorem \((x + y)^{2}\) above all!
+\end{verbatim}
+\end{tcolorbox}
+
+\noindent Generates the following sentence: I  love the binomial theorem \((x + y)^{2}\) above all!
+
+A second way of writing equations in line is using the ``\verb|$$|'' delimiters. Using this delimiter in the following script:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+I  love the binomial theorem $(x + y)^{2}$ above all!
+\end{verbatim}
+\end{tcolorbox}
+
+\noindent Generates the following sentence: I  love the binomial theorem $(x + y)^{2}$ above all!
+
+There is a third mode for writing in line mathematical expressions using the \verb|\begin{math} \end{math}| delimiters.  For example, the following code:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+I  love the binomial theorem \begin{math}(x + y)^{2}\end{math} above all!
+\end{verbatim}
+\end{tcolorbox}
+
+\noindent Generates the following sentence: I  love the binomial theorem \begin{math}(x + y)^{2}\end{math} above all!
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Equation mode}
+
+There are also three ways of writing stand-alone equations in \LaTeX. One way is using the ``\verb|\[  \]|'' delimiters. For example, the code:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\[ (x + y)^{2} \]
+\end{verbatim}
+\end{tcolorbox}
+
+\noindent Generates the following equation:
+
+\[ (x + y)^{2} \]
+
+The second approach, uses the ``\verb|$$  $$|'' delimiters. For example, the code:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+$$(x + y)^{2}$$
+\end{verbatim}
+\end{tcolorbox}
+
+\noindent Generates the following equation:
+$$(x + y)^{2}$$
+
+The third mode to write equations uses the ``\verb|\begin{equation} \end{equation}|'' delimiters. This environment has the advantage of automatically numbering the equations, and lets the user generate equation labels to reference them in the text. For example:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+Equation \ref{eq:bin} is the best!
+\begin{equation}
+\label{eq:bin}
+(x + y)^{2}
+\end{equation}
+\end{verbatim}
+\end{tcolorbox}
+
+Equation \ref{eq:bin} is the best!
+\begin{equation}
+\label{eq:bin}
+(x + y)^{2}
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Basic mathematical notation}
+
+\LaTeX~ has the capacity to write complex mathematical expressions in a clear and flexible way. Consider the following basic notation examples:
+
+\begin{itemize} \itemsep-0.4em
+\item  Superscripts and subscritps:
+\begin{singlespace}
+\begin{tabular}{ll}
+\verb|a^2|          & $a^2$ \\
+\verb|a^{2}|       & $a^{2}$ \\
+\verb|a^{2+b}|      &  $a^{2+b}$ \\
+\verb|a_{1}|   & $a_{1} $ \\ 
+\verb|a_{1+c}|   & $a_{1+c} $ \\ 
+\verb|a^{b}_{c+3}|   & $a^{b}_{c+3} $ \\ 
+
+\end{tabular}
+\end{singlespace}
+\end{itemize}
+
+
+\begin{itemize} \itemsep-0.4em
+\item  Relations:
+\begin{singlespace}
+\begin{tabular}{ll}
+\verb|>|   & $>$ \\ 
+\verb|<|   & $<$ \\ 
+\verb|\geq|   & $\geq $ \\ 
+\verb|\leq|   & $\leq$ \\ 
+\verb|\subset|   & $ \subset$ \\ 
+\verb|\supset|   & $\supset $ \\ 
+\verb|\subseteq|   & $\subseteq $ \\ 
+\verb|\supseteq|   & $\supseteq $ \\ 
+\end{tabular}
+\end{singlespace}
+\end{itemize}
+
+\newpage
+\begin{itemize} \itemsep-0.4em
+\item  Parentheses, brackets, braces
+\begin{singlespace}
+\begin{tabular}{ll}
+\verb|(x)|   & $(x) $ \\ 
+\verb|[x]|   & $[x] $ \\ 
+\verb|\{x\}|   & $\{x\} $ \\ 
+\verb|\big(x\big)|   & $\big(x\big) $ \\ 
+\verb|\Big(x\Big)|   & $\Big(x\Big)$ \\ 
+\verb|\bigg(x\bigg)|   & $\bigg(x\bigg)$ \\ 
+\verb|\Bigg(x)(|   & $\Bigg(x\Bigg)$ \\ 
+\end{tabular}
+\end{singlespace}
+\end{itemize}
+
+
+\begin{itemize} \itemsep-0.4em
+\item  Sums and integrals
+\begin{singlespace}
+\begin{tabular}{ll}
+\verb|\sum_{i=1}^{10} t_i|   & $ \sum_{i=1}^{10} t_i$ \\ 
+\verb|\displaystyle\sum_{i=1}^{10} t_i|   & $ \displaystyle\sum_{i=1}^{10} t_i$ \\ 
+\verb|\int_0^{\infty} e^{-x}|   & $\int_0^{\infty} e^{-x}$ \\ 
+\verb|\displaystyle\int_0^{\infty} e^{-x}|   & $\displaystyle\int_0^{\infty} e^{-x}$  \\ 
+\end{tabular}
+\end{singlespace}
+\end{itemize}
+
+
+\begin{itemize} \itemsep-0.4em
+\item  Fractions
+
+\begin{singlespace}
+\begin{tabular}{ll}
+\verb|\frac{a}{a+b}|   & $\frac{a}{a+b} $ \\ 
+\verb|\displaystyle\frac{a}{a+b}|   & $ \displaystyle\frac{a}{a+b}$ \\ 
+\verb|\frac{a}{a+b} = \frac{c+d}{e}|   & $\frac{a}{a+b} = \frac{c+d}{e}$ \\ 
+\verb|\displaystyle\frac{a}{a+b} = \frac{c+d}{e}|   & $ \displaystyle\frac{a}{a+b} = \frac{c+d}{e}$ \\ 
+\end{tabular}
+\end{singlespace}
+\end{itemize}
+
+
+\newpage
+\begin{itemize} \itemsep-0.4em
+\item  Greek letters
+\begin{singlespace}
+\begin{tabular}{ll}
+\verb|\alpha|   & $\alpha $ \\ 
+\verb|\beta|   & $ \beta$ \\ 
+\verb|\gamma|   & $\gamma $ \\ 
+\verb|\delta|   & $\delta $ \\ 
+\verb|\theta|   & $\theta $ \\ 
+\verb|\pi|   & $\pi $ \\ 
+\verb|\Gamma|   & $\Gamma $ \\ 
+\verb|\Delta|   & $\Delta $ \\ 
+\verb|\Pi|   & $\Pi $ \\ 
+\verb|\Sigma|   & $\Sigma $ \\ 
+\verb|\Omega|   & $\Omega $ \\ 
+\end{tabular}
+\end{singlespace}
+\end{itemize}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Putting everything together}
+
+To put everything together, consider the following script for equation \ref{eq:reg}:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{equation}
+\label{eq:reg}
+y_{i,t} = \alpha +  \beta_{1} y_{i,t-1} + \beta_{2} X_{i,t} + 
+\beta_{2} X^{2}_{i,t} +  \epsilon _{i,t}
+\end{equation}
+\end{verbatim}
+\end{tcolorbox}
+
+
+\begin{equation}
+\label{eq:reg}
+y_{i,t} = \alpha +  \beta_{1} y_{i,t-1} + \beta_{2} X_{i,t} + \beta_{2} X^{2}_{i,t} +  \epsilon _{i,t}
+\end{equation}
+
+
+
+The following script generates a more sophisticated equation:
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\begin{equation}
+\label{eq:formula}
+\frac{\delta^{2}}{e_{\lambda}} \geq \sum_{i=1}^{10}(r-\gamma)+\frac{\pi}{e^{n}}
+\end{equation}
+\end{verbatim}
+\end{tcolorbox}
+
+The result is equation \ref{eq:formula}:
+\begin{equation}
+\label{eq:formula}
+\frac{\delta^{2}}{e_{\lambda}} \geq \sum_{i=1}^{10}(r-\gamma)+\frac{\pi}{e^{n}}
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Other symbols}
+
+Here are some useful lists of math symbols that you might find useful:
+
+\begin{itemize}\itemsep-0.4em
+\item This is a short, but nice list of math symbols:
+\item[] \url{http://milde.users.sourceforge.net/LUCR/Math/mathpackages/mathabx-symbols.pdf}
+\item This is probably the longest, but most complete list of symbols I have seen: 
+\item[] \url{https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf}
+
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Importing regression results from R}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Using the stargazer package in R}
+
+The ``stargazer'' package allows exporting tables and regression results from R into \LaTeX.\\
+
+First, let's open RStudio and run the following setup script:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+#Install stargazer. Do this only once
+install.packages("stargazer") 
+
+#Load the library
+library(stargazer)
+
+#Set your own working directory
+setwd("C:/Users/javie/Desktop")
+\end{verbatim}
+\end{tcolorbox}
+
+\newpage
+Then, get the data and run some regression models:
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+# Load the mtcars database
+data <- mtcars
+
+# Regression
+model1 <- lm(mpg ~ am, data=data)
+   summary(model1)
+model2 <- lm(mpg ~ am + vs, data=data)
+   summary(model2)
+model3 <- lm(mpg ~ am + vs + gear, data=data)
+   summary(model3)
+\end{verbatim}
+\end{tcolorbox}
+
+
+Now, generate a regression table in \texttt{.tex} format to import in \LaTeX:
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+stargazer(model1, model2, model3, type="latex", out="mytable1.tex")  
+\end{verbatim}
+\end{tcolorbox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Paste the table script in \LaTeX}
+
+
+After running the R script, you will be able to find the file \texttt{mytable1.tex} in your working folder.  Open the file, copy its content and paste it into your \LaTeX~script. 
+
+I recommend pasting the table code inside a single space environment to improve the looks of the table (\texttt{\textbackslash begin\{singlespace\}...\textbackslash end\{singlespace\}}). I also recommend eliminating the table extra space (\texttt{\textbackslash\textbackslash[-1.8ex]}) and commenting out the empty lines to avoid inefficient use of space in the table (\texttt{\% \& \& \&  \textbackslash\textbackslash}). These changes should generate the following output:
+
+
+\begin{singlespace}
+
+\begin{table}[H] \centering 
+%  \caption{} 
+%  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+\hline 
+\hline 
+ & \multicolumn{3}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-4} 
+ & \multicolumn{3}{c}{mpg} \\ 
+ & (1) & (2) & (3)\\ 
+\hline 
+ am & 7.245$^{***}$ & 6.067$^{***}$ & 7.050$^{***}$ \\ 
+  & (1.764) & (1.275) & (2.091) \\ 
+%  & & & \\ 
+ vs &  & 6.929$^{***}$ & 7.022$^{***}$ \\ 
+  &  & (1.262) & (1.286) \\ 
+%  & & & \\ 
+ gear &  &  & $-$0.851 \\ 
+  &  &  & (1.424) \\ 
+%  & & & \\ 
+ Constant & 17.147$^{***}$ & 14.594$^{***}$ & 17.293$^{***}$ \\ 
+  & (1.125) & (0.926) & (4.612) \\ 
+%  & & & \\ 
+\hline 
+Observations & 32 & 32 & 32 \\ 
+R$^{2}$ & 0.360 & 0.686 & 0.690 \\ 
+Adjusted R$^{2}$ & 0.338 & 0.664 & 0.657 \\ 
+Residual Std. Error & 4.902 (df = 30) & 3.491 (df = 29) & 3.531 (df = 28) \\ 
+F Statistic & 16.860$^{***}$ (df = 1; 30) & 31.690$^{***}$ (df = 2; 29) & 20.778$^{***}$ (df = 3; 28) \\ 
+\hline 
+\hline 
+\textit{Note:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+\end{singlespace}
+
+
+\newpage
+You can also edit the labels of the dependent and independent variables:
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+stargazer(model1, model2, model3, 
+dep.var.labels=c("Miles per gallon"),
+covariate.labels=c("Manual transmission","Straight engine","Num. of gears"),
+type="latex", out="mytable2.tex")  
+\end{verbatim}
+\end{tcolorbox}
+
+
+
+\begin{singlespace}
+\begin{table}[H] \centering 
+%  \caption{} 
+%  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+\hline 
+\hline 
+ & \multicolumn{3}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-4} 
+ & \multicolumn{3}{c}{Miles per gallon} \\ 
+ & (1) & (2) & (3)\\ 
+\hline 
+ Manual transmission & 7.245$^{***}$ & 6.067$^{***}$ & 7.050$^{***}$ \\ 
+  & (1.764) & (1.275) & (2.091) \\ 
+%  & & & \\ 
+ Straight engine &  & 6.929$^{***}$ & 7.022$^{***}$ \\ 
+  &  & (1.262) & (1.286) \\ 
+%  & & & \\ 
+ Num. of gears &  &  & $-$0.851 \\ 
+  &  &  & (1.424) \\ 
+%  & & & \\ 
+ Constant & 17.147$^{***}$ & 14.594$^{***}$ & 17.293$^{***}$ \\ 
+  & (1.125) & (0.926) & (4.612) \\ 
+%  & & & \\ 
+\hline 
+Observations & 32 & 32 & 32 \\ 
+R$^{2}$ & 0.360 & 0.686 & 0.690 \\ 
+Adjusted R$^{2}$ & 0.338 & 0.664 & 0.657 \\ 
+Residual Std. Error & 4.902 (df = 30) & 3.491 (df = 29) & 3.531 (df = 28) \\ 
+F Statistic & 16.860$^{***}$ (df = 1; 30) & 31.690$^{***}$ (df = 2; 29) & 20.778$^{***}$ (df = 3; 28) \\ 
+\hline 
+\hline 
+\textit{Note:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+\end{singlespace}
+
+
+
+% You can find more information on stargazer here:
+%\url{https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf}
+%\url{https://www.rdocumentation.org/packages/stargazer/versions/5.2.2/topics/stargazer}
+
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bibliography}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Generating a BibTeX file with Mendeley}
+
+Mendeley is a citation management program that offers a variety of features to manage bibliographic resources. You can download the basic version of Mendeley for free at \url{https://www.mendeley.com/}. The features included in this program allow users to:
+
+\begin{itemize}\itemsep-0.4em
+\item Create collections of bibliographic references
+\item Manage citations
+\item Read and annotate PDF documents
+\item Create notes or summaries per document
+\item Automatically extract metadata from PDF documents
+\item Cloud-based syncrhonization of collections across devices
+\item Insert citations and automatically create bibliographies in World and OpenOffice
+\item Export collections in BibTeX format
+\item Many other 
+\end{itemize}
+
+There are some good alternatives to Mendeley such as Zotero or EndNote. If you already use any citation manager system, please feel free to keep doing it. Just make sure you learn how to export your citations into BibTex format so you can use them in \LaTeX documents.
+
+
+There are different ways of adding files to Mendeley:
+\begin{enumerate}\itemsep-0.4em
+\item Create a citation manually
+    \begin{itemize}\itemsep-0.4em
+    \item Click on the black arrow next to the \textsf{Add} button
+    \item This will display a menu, click on \textsf{Add Entry Manually} 
+    \item This will open a window where you can enter the information of different types of citations (e.g. journal articles, books, etc.)
+    \item When entering the information, make sure you enter the \textbf{\textsf{Citation Key}}
+        \begin{itemize}\itemsep-0.4em
+        \item I recommend simply using \texttt{AuthorYYYY} format.
+        \end{itemize}
+    \end{itemize}    
+\item Drag a journal article (in PDF format) into Mendeley 
+    \begin{itemize}\itemsep-0.4em
+    \item Use any journal article that you already have in your computer (or download one from the web)
+    \item Simply drag the PDF file into Mendeley
+    \item Mendeley will automatically extract the citation meta-data of the article
+    \item Always double check the accuracy of the meta-data.
+    \end{itemize}
+\item Upload a citation file 
+    \begin{itemize}\itemsep-0.4em
+    \item Many journals offer the possibility of downloading article citations
+    \item Just download an article citation in BibTex format (\texttt{.bib}).
+    \item Then upload the citation into Mendeley
+        \begin{itemize}\itemsep-0.4em
+        \item Click on the black arrow of the \textsf{Add} button
+        \item This will display a menu, click on \textsf{Add files} 
+        \item Browse to the location of your file and select it
+        \item Click on \textsf{Open} 
+        \end{itemize}
+    \end{itemize}
+\item Use the online plug-in
+    \begin{itemize}\itemsep-0.4em
+    \item We will not cover how to use the Mendeley Web Importer and the Word Plug-In in this workshop, but you will finds a nice explanation in this Youtube video:
+    \item[]\url{https://www.youtube.com/watch?v=XTfVCiksapk}
+    \end{itemize}
+\item[]    
+\end{enumerate}
+
+
+To generate a collection of references in BibTex format, follow these steps:
+
+\begin{enumerate}
+\item Select the citations in Mendeley's main window
+\item Click on the \textsf{File} menu, then click on \textsf{Export}
+\item This opens a window where you get to specify the file name and its location
+\item Make sure you save the file in BibTeX format (\texttt{*.bib})
+%\item 
+\end{enumerate}
+
+The following is an example of the standard structure of a BibTeX file containing a journal article and a book reference.
+
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+@article{Baggins2019,
+author = {Baggins, Frodo},
+journal = {The Shire Journal of Metallurgy},
+title = {{How to Melt a Ring}},
+volume = {10},
+number = {1},
+pages = {20 -- 30},
+year = {2019}
+}
+@book{WoodlandC2018,
+address = {Tucson},
+author = {Woodland, Legolas and The Gray, Gandalf},
+publisher = {University of Arizona Press},
+title = {{Treaty on Orc Control}},
+year = {2018}
+}
+@article{Gamgee2018,
+author = {Gamgee, Sam and Baggins, Frodo and Baggins, Bilbo and Took, Peregrin}, 
+journal = {Journal of Long Distance Travel},
+title = {{Around the Middle-earth in 80 Days}},
+volume = {32},
+number = {4},
+pages = {9 -- 27},
+year = {2018}
+}
+\end{verbatim}
+\end{tcolorbox}
+
+
+To add the BibTeX collection to Overleaf, follow these steps:
+
+\begin{enumerate}
+\item In the left panel of Overleaf, click on the \textsf{Upload} icon 
+\item Drag the BibTeX file into Overleaf's upload window
+\item Make sure the uploaded file shows the \texttt{.bib} extension
+\item Click on the uploaded BibTeX file to make sure the content is correct
+\end{enumerate}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Managing citations in \LaTeX}
+
+There are different packages for managing citations in \LaTeX (e.g. \texttt{natbib}, \texttt{cite}, or \texttt{biblatex}). Here we will be using \texttt{natbib}, which is very broadly used as it offers considerable flexibility for managing citations and producing references in a wide range of citation styles.  There are two main elements involved in enabling citations in \LaTeX~ using  \texttt{natbib}:
+
+\begin{enumerate}
+\item Call the \texttt{natbib} package in the document preamble: 
+     \begin{tcolorbox}\small 
+     \texttt{\textbackslash usepackage\{natbib\}} 
+     \end{tcolorbox}
+
+\item Specify the bibliography style that you want to use (e.g. APA, Chicago, etc.) and the BibTeX file containing the collection of references:
+    \begin{tcolorbox}\small 
+    \texttt{\textbackslash bibliographystyle\{apsr\}}
+     
+    \texttt{\textbackslash bibliography\{mybiblio\}}
+    \end{tcolorbox}
+    \begin{itemize}
+    \item In this case, the bibliography style follows the format specifications of the American Political Science Association (APSR).
+    \item[] There are many other citation styles to choose from, such as \texttt{chicago}, \texttt{apa}, \texttt{apalike}, etc.  
+    \item The bibliography file is \texttt{mybiblio.bib}, created in  Mendeley.
+    \item Insert these commands in the part of the script that you want the bibliography to appear. \LaTeX~ will automatically create a References page in the specified location. 
+    \end{itemize}
+\end{enumerate}
+
+
+
+The two main commands in the \texttt{natbib} package are \texttt{\textbackslash citep\{\}}, used for parenthetical citations, and \texttt{\textbackslash citet\{\}}, which is used for textual citations.  There are some other variations of these commands to customize citations according to the needs of your document.  Here are some examples:
+
+\begin{singlespace}
+\begin{tabular}{ll}
+\verb|\citep{Baggins2019}|   &  \citep{Baggins2019}  \\ 
+\verb|\citep[p. 17]{Baggins2019}|   &  \citep[p. 17]{Baggins2019} \\ 
+\verb|\citep[e.g.][p. 17]{Baggins2019} |   & \citep[e.g.][p. 17]{Baggins2019}  \\ 
+\verb|\citet{WoodlandC2018}|   & \citet{WoodlandC2018}  \\ 
+\verb|\citet[chap. 1]{WoodlandC2018}|   &  \citet[chap. 1]{WoodlandC2018} \\ 
+\verb|\citep{Gamgee2018}|   & \citep{Gamgee2018}  \\ 
+\verb|\citep*{Gamgee2018}|   & \citep*{Gamgee2018}  \\ 
+\verb|\citet{Gamgee2018}|   & \citet{Gamgee2018}  \\ 
+\verb|\citet*{Gamgee2018}|   & \citet*{Gamgee2018}  \\ 
+\verb|\citep{Baggins2019,Gamgee2018}|   & \citep{Baggins2019,Gamgee2018}  \\ 
+\verb|\citet{Baggins2019,Gamgee2018}|   & \citet{Baggins2019,Gamgee2018}  \\ 
+\verb|\citeauthor{Baggins2019}|   &  \citeauthor{Baggins2019}  \\ 
+\verb|\citeyear{Baggins2019}|   &  \citeyear{Baggins2019}  \\ 
+\verb|\citeyearpar{Baggins2019}|   &  \citeyearpar{Baggins2019}  \\ 
+%\verb|xxx|   &   \\ 
+%\verb|xxx|   &   \\ 
+%\verb|xxx|   &   \\  
+ & \\
+\end{tabular}
+\end{singlespace}
+
+As an example, consider the following script:
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+The seminal paper by \citet{Baggins2019} launched a new idea. Early critics 
+remained skeptical \citep{Gamgee2018} until \citet[chap. 1]{WoodlandC2018} 
+found new evidence.
+\end{verbatim}
+\end{tcolorbox}
+
+This would produce the following output:
+
+The seminal paper by \citet{Baggins2019} launched a new idea. Early critics remained skeptical \citep{Gamgee2018} until \citet[chap. 1]{WoodlandC2018} found new evidence.
+
+\vspace{0.5cm}
+
+For more details on the use of the \texttt{natbib} package, see:
+\url{http://ctan.mirrors.hoobly.com/macros/latex/contrib/natbib/natnotes.pdf}
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Beamer Presentations}
+
+In \LaTeX, a document containing presentation slides is called Beamer. All the \LaTeX~commands for  content development and formatting discussed before are also applicable to a Beamer document. To create presentations in \LaTeX, it is necessary to create a new file using the \texttt{beamer} document class.  Let's create a new document in Overleaf click on the green button ``New Project,'' located at the top left of the interface. Then, click on ``Blank Project'' and assign a name to your file.
+
+Beamer offers a wide range of customization of the general frame and looks of your presentation by specifying three main components:
+
+\begin{itemize}\itemsep-0.4em
+\item Theme
+\item Color
+\item Font
+\end{itemize}
+
+Based on these three elements, Beamer allows an enormous variety of presentation frameworks. Take a look at them in this link: \url{https://hartwork.org/beamer-theme-matrix/}, Here is a short list of some themes, colors, and fonts for your to consider:
+
+\begin{itemize} \itemsep-0.4em
+\item Short list of Beamer themes:
+    \begin{itemize} \itemsep-0.4em
+    \item  \texttt{default} 
+    \item  \texttt{Antibes}
+    \item  \texttt{Berkeley}
+    \item  \texttt{Berlin}
+    \item  \texttt{Boadilla}
+    \item  \texttt{Copenhagen}
+    \item  \texttt{Frankfurt}
+    \item  \texttt{Madrid}
+    \item  \texttt{Singapore}
+    \item  \texttt{Warsaw}
+    \end{itemize} 
+\item  Short list of Beamer colors:
+    \begin{itemize} \itemsep-0.4em
+    \item  \texttt{default} 
+    \item  \texttt{albatross}
+    \item  \texttt{beaver}
+    \item  \texttt{beetle}
+    \item  \texttt{crane}
+    \item  \texttt{dolphin} 
+    \item  \texttt{dove}
+    \item  \texttt{fly}
+    \item  \texttt{lily}
+    \item  \texttt{orchid}
+    \end{itemize} 
+\item List of Beamer fonts:
+    \begin{itemize} \itemsep-0.4em
+    \item  \texttt{default} 
+    \item  \texttt{professionalfonts}
+    \item  \texttt{serif}
+    \item  \texttt{structurebold}
+    \item  \texttt{structureitalicserif}
+    \item  \texttt{structuresmallcapsserif}
+    \end{itemize} 
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Beamer Preamble}
+
+Just like any \LaTeX~ document, the preamble is the script section where you define the main characteristics of the presentation and call specific packages to perform the functions that you need.
+
+Consider the following default preamble script. Feel free to customize the theme, color, and font any way you want. I am going to be using the \texttt{Boadilla} theme, with the \texttt{beaver} color, and the \texttt{serif} font.
+
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\documentclass{beamer}
+\usepackage[utf8x]{inputenc}
+\mode<presentation>
+{
+  \usetheme{default}      % Define the theme 
+  \usecolortheme{default} % Define the color 
+  \usefonttheme{default}  % Define the font
+} 
+\end{verbatim}
+\end{tcolorbox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Title, Author, and Date}
+
+Beamer allows additional customization of the title, author, institute, and date. These features are enabled in the \texttt{[options]} section available after the  \texttt{\textbackslash title}, \texttt{\textbackslash author}, \texttt{\textbackslash institute}, and  \texttt{\textbackslash date} commands.  By populating these options, Beamer will present this information at the bottom of each slide throughout the entire presentation. For example, the following script:
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+\title[Short Title]{Really Cool Presentation Title}
+\author[Osorio]{Javier Osorio}
+\institute[UofA]{School of Government and Public Policy \\ 
+      University of Arizona}
+\date[February, 2019]{Presentation prepared for the \\ 
+     \LaTeX Crash Course \\ 
+     Tucson, AZ, \\ 
+     February, 2019}
+\end{verbatim}
+\end{tcolorbox}
+
+Will generate this presentation title page:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.9]{presentation_1.png}
+  \caption{Beamer presentation.}
+  \label{fig:beamer}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Presentation slides}
+
+After specifying the preamble and the title page, you can now start developing the content of your presentation slides in Beamer. When developing your content, consider the following elements:
+
+\begin{enumerate}
+\item Just like any other \LaTeX~ document, the entire content of the presentation must be contained within the \texttt{\textbackslash begin\{document\}...\textbackslash end\{document\}} commands.
+\item The content of each slide must be contained within the \texttt{\textbackslash begin\{frame\}...\textbackslash end\{frame\}} commands.
+\item Insert the \texttt{\textbackslash titlepage} right after the  \texttt{\textbackslash begin\{document\}} command.
+\item If you want to create a Table of Contents showing the sections of your presentation, you must enter the \texttt{\textbackslash tableofcontents\{\}} command. 
+    \begin{itemize}
+    \item If you do not want a Table of Contents, you can simply delete these lines from the script, or comment them out with a \%.
+    \end{itemize}    
+\item You can use ALL the format and content commands discussed before to develop the content of your slides. This includes, but is not limited to, the following basic functions:
+    \begin{itemize}
+    \item Sections and subsections
+    \item Font type, size, and color
+    \item Text color in line and in table
+    \item Lists (itemized and numeric)
+    \item Tables and Figures
+    \item Mathematical notation
+    \end{itemize}
+\end{enumerate}
+
+Below, you can finds an example for a set of presentation slides in Beamer. This assumes that you already included the document preamble, necessary packages, and title page information. 
+
+
+\begin{tcolorbox}
+\small
+\begin{verbatim}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%----------------------------------------------%
+\begin{frame}
+   \titlepage
+\end{frame}
+%----------------------------------------------%
+\begin{frame}{Table of Contents}
+   \tableofcontents{}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%----------------------------------------------%
+\begin{frame}{Introduction}
+   Text
+   \begin{itemize}
+     \item Some more text here
+     \item And here
+   \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Content}
+%----------------------------------------------%
+\begin{frame}{Keep going}
+   It seems that you are inspired today!
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+\end{verbatim}
+\end{tcolorbox}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAPHY 
+\newpage
+\bibliographystyle{apsr}
+\bibliography{mybiblio}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

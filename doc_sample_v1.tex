@@ -1,0 +1,161 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Preamble
+\documentclass[12pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{authblk}      % Author and institution
+\usepackage{xcolor}       % Colored text
+\usepackage{hyperref}     % Enable URLs
+\usepackage{todonotes}    % Generate visible annotations
+\usepackage{multirow}     % Multi-row
+\usepackage{colortbl}     % Colored cells in table
+\usepackage{float}        % For tables and graphs  
+\usepackage{mathtools}    % Mathematical notation
+\usepackage{natbib}       % Bibliography 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+\title{Really Cool Title}
+\author[1]{This is you \thanks{Thank your dog}} 
+\author[2]{This is your friend \thanks{Thank your cat}}
+\affil[1]{Department A}
+\affil[2]{Department D}
+\date{February, 2019}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin document
+\begin{document}
+\maketitle
+\tableofcontents{}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Main section}
+This is where you write your wonderful ideas in \LaTeX!!!
+    \subsection{Secondary section}
+    Keep the ideas flowing.
+        \subsubsection{You got the idea}
+        OK, that is good.
+\section*{To hide the section number}
+Simply include an asterisk before the opening bracket
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Text functions}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Text Color}
+
+The basic usage allows \textcolor{red}{changing the color of the font}. The script below shows the syntax.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hyperlinks}
+
+Once loaded, the  \texttt{\textbackslash url\{www\}} command allows users to generate a working URL that explicitly shows web address in the following way: \url{https://sgpp.arizona.edu/}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Visible comments}
+
+Create a bubble annotation at the margin of the document.\todo{Do this}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tables and Figures}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Milti-column}
+
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \multicolumn{2}{|c|}{\textbf{Header B}} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\
+cell A2  &  cell B2  &  cell C2 \\
+cell A3  &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Multi-row}
+
+
+\begin{tabular}{|l|c|r|} 
+\hline
+\textbf{Header A} & \textbf{Header B} & \textbf{Header C} \\ 
+\hline\hline
+cell A1  &  cell B1  &  cell C1 \\ \hline
+\multirow{2}{*}{cells A2 and A3}  &  cell B2  &  cell C2 \\ \cline{2-3}
+       &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Table color}
+
+\begin{tabular}{|l|c|r|} 
+\hline
+\cellcolor{lightgray}\textbf{Header A} & \cellcolor{lightgray}\textbf{Header B} & \cellcolor{lightgray}\textbf{Header C} \\ 
+\hline\hline
+\cellcolor{blue!25}cell A1  &  cell B1  &  cell C1 \\
+\cellcolor{blue!50}cell A2  &  cell B2  &  cell C2 \\
+\cellcolor{blue!75}cell A3  &  cell B3  &  cell C3 \\ \hline
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Figures}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{image1.png}
+  \caption{My First Figure.}
+  \label{fig:figure1}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Math Symbols and Equations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{In line mathematical expression}
+
+Generates the following sentence: I  love the binomial theorem \((x + y)^{2}\) above all!
+
+Generates the following sentence: I  love the binomial theorem $(x + y)^{2}$ above all!
+
+Generates the following sentence: I  love the binomial theorem \begin{math}(x + y)^{2}\end{math} above all!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Equation mode}
+
+Generates the following equation:
+\[ (x + y)^{2} \]
+
+Generates the following equation:
+$$(x + y)^{2}$$
+
+Equation \ref{eq:bin} is the best!
+\begin{equation}
+\label{eq:bin}
+(x + y)^{2}
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Managing citations in \LaTeX}
+
+The seminal paper by \citet{Baggins2019} launched a new idea. Early critics remained skeptical \citep{Gamgee2018} until \citet[chap. 1]{WoodlandC2018} found new evidence.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAPHY 
+\newpage
+\bibliographystyle{apsr}
+\bibliography{mybiblio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
